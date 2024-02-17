@@ -5,7 +5,7 @@ local M = {
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons", lazy = true, commit = "3af745113ea537f58c4b1573b64a429fefad9e07" },
 	},
-	-- enabled = false,
+	--	enabled = false,
 }
 function M.config()
 	local colors = {
