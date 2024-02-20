@@ -1,13 +1,8 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 # Format
-format = '''
-$directory$git_branch$git_status$character'''
+format = '''$directory$git_branch$git_status$cmd_duration$nodejs$all$character'''
 
-right_format  = '''
-$cmd_duration$nodejs$all
-
-'''
 # Inserts a blank line between shell prompts
 add_newline = false
 
