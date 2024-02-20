@@ -10,7 +10,7 @@ local act = wezterm.action
 -- For example, changing the color scheme:
 config.color_scheme = "Catppuccin Mocha"
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
-config.default_prog = { "pwsh.exe" }
+config.default_prog = { "bash.exe" }
 config.font = wezterm.font("JetBrains Mono")
 config.window_background_opacity = 0.95
 config.use_fancy_tab_bar = false
