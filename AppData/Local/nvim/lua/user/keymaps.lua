@@ -52,11 +52,11 @@ keymap("n", "<S-l>", ":bnext<CR>", { desc = "go right buffers" })
 keymap("n", "<S-h>", ":bprevious<CR>", { desc = "go left buffers" })
 
 -- Delete buffers
-keymap("n", "<leader>bd", ":Bd<cr>", { desc = "delete buffer" })
+keymap("n", "<leader>x", ":bd<cr>", { desc = "delete buffer" })
 
 -- Move text up and down
--- keymap("n", "<space><c-j>", ":m .+1<CR>==", opts)
--- keymap("n", "<c-k>", ":m .-2<CR>==", opts)
+keymap("n", "<A-j>", ":m .+1<CR>==", { desc = "move line up" })
+keymap("n", "<A-k>", ":m .-2<CR>==", { desc = "move line down" })
 
 -- Easy write file
 keymap("n", "<leader>w", ":w<cr>", { desc = "write" })
