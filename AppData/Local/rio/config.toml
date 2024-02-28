@@ -1,0 +1,62 @@
+blinking-cursor = true
+performance = "High"
+disable-unfocused-render = false
+use-fork = true
+line-height = 1.0
+theme = ""
+padding-x = 0.0
+cursor = "▇"
+env-vars = []
+option-as-alt = "false"
+ignore-selection-fg-color = false
+
+[navigation]
+mode = "CollapsedTab"
+color-automation = []
+clickable = false
+use-current-path = true
+use-terminal-title = false
+macos-hide-window-buttons = false
+
+[window]
+width = 800
+height = 600
+mode = "Windowed"
+decorations = "Transparent"
+
+[background]
+
+[shell]
+program = "pwsh"
+args = []
+
+[fonts]
+size = 18.0
+
+[fonts.regular]
+family = "cascadiamono"
+weight = 400
+style = "normal"
+
+[fonts.bold]
+family = "cascadiamono"
+weight = 800
+style = "normal"
+
+[fonts.bold-italic]
+family = "cascadiamono"
+weight = 800
+style = "italic"
+
+[fonts.italic]
+family = "cascadiamono"
+weight = 400
+style = "italic"
+
+[developer]
+enable-fps-counter = true
+log-level = "OFF"
+
+[bindings]
+keys = []
+
