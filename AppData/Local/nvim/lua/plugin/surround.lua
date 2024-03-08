@@ -17,6 +17,7 @@ local M = {
 				change = "cs",
 				change_line = "cS",
 			},
+			move_cursor = false,
 		})
 	end,
 }
