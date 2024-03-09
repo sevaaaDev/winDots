@@ -68,7 +68,7 @@ function M.config()
 				v = colors.green,
 				V = colors.green,
 				["\22"] = colors.green,
-				c = colors.white,
+				c = colors.peach,
 				s = colors.mauve,
 				S = colors.mauve,
 				["\19"] = colors.mauve,
@@ -79,26 +79,12 @@ function M.config()
 			},
 		},
 		{
-			provider = "",
-			hl = function(self)
-				local mode = self.mode:sub(1, 1) -- get only the first mode character
-				return { fg = self.mode_colors[mode], bold = true }
-			end,
-		},
-		{
 			provider = function(self)
-				return "%(" .. self.mode_names[self.mode] .. "%)"
+				return " %(" .. self.mode_names[self.mode] .. "%) "
 			end,
 			hl = function(self)
 				local mode = self.mode:sub(1, 1) -- get only the first mode character
 				return { fg = "black", bg = self.mode_colors[mode], bold = true }
-			end,
-		},
-		{
-			provider = " ",
-			hl = function(self)
-				local mode = self.mode:sub(1, 1) -- get only the first mode character
-				return { fg = self.mode_colors[mode], bold = true }
 			end,
 		},
 		update = {
@@ -115,24 +101,12 @@ function M.config()
 			self.dict = vim.b.gitsigns_status_dict
 		end,
 		{
-			provider = "",
-			hl = {
-				fg = colors.peach,
-			},
-		},
-		{
 			provider = function(self)
-				return " " .. self.dict.head
+				return "  " .. self.dict.head .. " "
 			end,
 			hl = {
-				bg = colors.peach,
+				bg = colors.blue,
 				fg = "black",
-			},
-		},
-		{
-			provider = "",
-			hl = {
-				fg = colors.peach,
 			},
 		},
 	}
