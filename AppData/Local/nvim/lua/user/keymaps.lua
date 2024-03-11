@@ -5,10 +5,6 @@ local function keymap(mode, lhs, rhs, opts)
 	vim.keymap.set(mode, lhs, rhs, opts)
 end
 local term_opts = { silent = true }
---Remap space as leader key
-keymap("", "<Space>", "<Nop>")
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -17,26 +13,19 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
--- Normal --
--- Better window navigation
--- keymap("n", "<C-h>", "<C-w>h", opts)
--- keymap("n", "<C-j>", "<C-w>j", opts)
--- keymap("n", "<C-k>", "<C-w>k", opts)
--- keymap("n", "<C-l>", "<C-w>l", opts)
 
--- keymap("i", "/", function()
--- 	if vim.o.filetype == "lua" then
--- 		print("u are in lua")
--- 		return "//<Left>"
--- 	else                            -- cool feature
--- 		print("u are not in lua")
--- 	end
--- end, { expr = true })
+-- <Remap space as leader key>
+keymap("", "<Space>", "<Nop>")
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
+-- <File explorer>
 keymap("n", "<leader>pv", ":Ex <cr>", { desc = "Open netrw" })
 
+-- <i dont like the default>
 keymap("n", "<c-d>", "<c-d>zz", { desc = "down a half screen" })
 keymap("n", "<c-u>", "<c-u>zz", { desc = "up a half screen" })
+
 -- Navigating thru word wrapped line
 vim.keymap.set("n", "k", "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
 vim.keymap.set("n", "j", "v:count == 0 ? 'gj' : 'j'", { expr = true, silent = true })
@@ -59,7 +48,13 @@ keymap("n", "<A-j>", ":m .+1<CR>==", { desc = "move line up" })
 keymap("n", "<A-k>", ":m .-2<CR>==", { desc = "move line down" })
 
 -- Easy write file
-keymap("n", "<leader>w", ":w<cr>", { desc = "write" })
+keymap("n", "<leader>w", ":w<cr>", { desc = "Write File" })
+
+-- <easy Caps A>
+keymap("n", "<leader>a", "A", { desc = "Caps A" })
+
+-- tilde
+keymap("n", "<leader>s", "~", { desc = "Swap caps like tilde[~]" })
 
 -- Visual --
 -- Stay in indent mode
