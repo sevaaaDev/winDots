@@ -17,13 +17,13 @@ local M = {
 function M.config()
 	require("telescope").load_extension("undo")
 	local builtin = require("telescope.builtin")
-	vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "[F]ind [F]iles" })
-	vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "[F]ind using [G]rep" })
+	vim.keymap.set("n", "<leader>fp", builtin.find_files, { desc = "[F]ile [P]ickers" })
+	vim.keymap.set("n", "<leader>fgp", builtin.live_grep, { desc = "[F]ind using [G]rep" })
 	vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[F]ind [H]elp" })
-	vim.keymap.set("n", "<leader>?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
+	vim.keymap.set("n", "<leader>f?", builtin.oldfiles, { desc = "[?] Find recently opened files" })
 	vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "[F]ind existing [B]uffers" })
-	vim.keymap.set("n", "<leader>gf", builtin.git_files, { desc = "Find [G]it [F]iles" })
-	vim.keymap.set("n", "<leader>u", ":Telescope undo theme=ivy<cr>", { desc = "[U]ndo Tree" })
+	vim.keymap.set("n", "<leader>fgi", builtin.git_files, { desc = "Find [G]it [F]iles" })
+	vim.keymap.set("n", "<leader>fu", ":Telescope undo theme=ivy<cr>", { desc = "[U]ndo Tree" })
 	local actions = require("telescope.actions")
 	local telescope = require("telescope")
 	telescope.setup({
@@ -36,8 +36,8 @@ function M.config()
 				i = {
 					["<Down>"] = actions.move_selection_next,
 					["<Up>"] = actions.move_selection_previous,
-					["<C-j>"] = actions.move_selection_next,
-					["<C-k>"] = actions.move_selection_previous,
+					["<C-n>"] = actions.move_selection_next,
+					["<C-p>"] = actions.move_selection_previous,
 				},
 			},
 		},
