@@ -17,38 +17,25 @@ function M.config()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 	capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 	local function lsp_keymaps(bufnr)
-		local function keymap(buf, mode, lhs, rhs, opts)
-			opts = opts or {}
-			opts.noremap = true
-			opts.silent = true
-			vim.api.nvim_buf_set_keymap(buf, mode, lhs, rhs, opts)
+		local keymap = function(keys, func, desc)
+			vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
 		end
-		keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", { desc = "Go to Declaration" })
-		keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", { desc = "Go to Definition" })
-		keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", { desc = "Hover" })
-		keymap(bufnr, "n", "gI", "<cmd>lua vim.lsp.buf.implementation()<CR>", { desc = "Implementation" })
-		keymap(bufnr, "n", "gr", "<cmd>lua vim.lsp.buf.references()<CR>", { desc = "References" })
-		keymap(bufnr, "n", "gl", "<cmd>lua vim.diagnostic.open_float()<CR>", { desc = "Diagnostic open float" })
-		keymap(bufnr, "n", "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<CR>", { desc = "Code action" })
-		keymap(bufnr, "n", "<leader>li", "<cmd>LspInfo<cr>", { desc = "LspInfo" })
-		keymap(bufnr, "n", "<leader>m", "<cmd>Mason<cr>", { desc = "Mason" })
-		keymap(
-			bufnr,
-			"n",
-			"<leader>lj",
-			"<cmd>lua vim.diagnostic.goto_next({buffer=0})<cr>",
-			{ desc = "Go to next diagnostic" }
-		)
-		keymap(
-			bufnr,
-			"n",
-			"<leader>lk",
-			"<cmd>lua vim.diagnostic.goto_prev({buffer=0})<cr>",
-			{ desc = "Go to prev diagnostic" }
-		)
-		keymap(bufnr, "n", "<leader>lr", "<cmd>lua vim.lsp.buf.rename()<cr>", { desc = "Lsp Rename" })
-		keymap(bufnr, "n", "<leader>ls", "<cmd>lua vim.lsp.buf.signature_help()<CR>", { desc = "Lsp Signature" })
-		keymap(bufnr, "n", "<leader>lq", "<cmd>lua vim.diagnostic.setloclist()<CR>", { desc = "Lsp Setloclist" })
+		keymap("gD", vim.lsp.buf.declaration, "Go to Declaration")
+		keymap("gd", require("telescope.builtin").lsp_definitions, "Go to Definition")
+		keymap("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type Definition")
+		keymap("K", vim.lsp.buf.hover, "Hover")
+		keymap("gI", require("telescope.builtin").lsp_implementations, "Implementation")
+		keymap("gr", require("telescope.builtin").lsp_references, "References")
+		keymap("gl", vim.diagnostic.open_float, "Diagnostic open float")
+		keymap("<leader>ca", vim.lsp.buf.code_action, "Code action")
+		keymap("<leader>lj", vim.diagnostic.goto_next, "Go to next diagnostic")
+		keymap("<leader>lk", vim.diagnostic.goto_prev, "Go to prev diagnostic")
+		keymap("<leader>lr", vim.lsp.buf.rename, "Lsp Rename")
+		keymap("<leader>ls", vim.lsp.buf.signature_help, "Lsp Signature")
+		keymap("<leader>lq", vim.diagnostic.setloclist, "Lsp Setloclist")
+		-- shortcut
+		keymap("<leader>li", "<cmd>LspInfo<cr>", "LspInfo")
+		keymap("<leader>m", "<cmd>Mason<cr>", "Mason")
 	end
 
 	local lspconfig = require("lspconfig")
