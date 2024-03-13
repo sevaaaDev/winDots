@@ -5,8 +5,8 @@ local M = {
 	config = function()
 		local leap = require("leap")
 		local user = require("leap.user")
-		vim.keymap.set({ "n", "x", "o" }, "s", "<Plug>(leap-forward-to)")
-		vim.keymap.set({ "n", "x", "o" }, "S", "<Plug>(leap-backward)")
+		vim.keymap.set({ "n", "o" }, "s", "<Plug>(leap-forward-to)")
+		vim.keymap.set({ "n", "o" }, "S", "<Plug>(leap-backward)")
 		leap.opts.special_keys.prev_target = "<bs>"
 		leap.opts.special_keys.prev_group = "<bs>"
 		user.set_repeat_keys("<cr>", "<bs>")
