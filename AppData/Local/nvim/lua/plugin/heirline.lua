@@ -25,35 +25,35 @@ function M.config()
 		end,
 		static = {
 			mode_names = {
-				["n"] = "N",
+				["n"] = "NORMAL",
 				["no"] = "OP-PENDING",
 				["nov"] = "OP-PENDING",
 				["noV"] = "OP-PENDING",
 				["no\22"] = "OP-PENDING",
-				["niI"] = "N",
-				["niR"] = "N",
-				["niV"] = "N",
-				["nt"] = "N",
-				["ntT"] = "N",
-				["v"] = "V",
-				["vs"] = "V",
-				["V"] = "VL",
-				["Vs"] = "VL",
-				["\22"] = "VB",
-				["\22s"] = "VB",
+				["niI"] = "NORMAL",
+				["niR"] = "NORMAL",
+				["niV"] = "NORMAL",
+				["nt"] = "NORMAL",
+				["ntT"] = "NORMAL",
+				["v"] = "VISUAL",
+				["vs"] = "VISUAL",
+				["V"] = "VISUAL L",
+				["Vs"] = "VISUAL L",
+				["\22"] = "VISUAL B",
+				["\22s"] = "VISUAL B",
 				["s"] = "SELECT",
 				["S"] = "SELECT",
 				["\19"] = "SELECT",
-				["i"] = "I",
-				["ic"] = "I",
-				["ix"] = "I",
-				["R"] = "R",
-				["Rc"] = "R",
-				["Rx"] = "R",
-				["Rv"] = "VR",
-				["Rvc"] = "VR",
-				["Rvx"] = "VR",
-				["c"] = "C",
+				["i"] = "INSERT",
+				["ic"] = "INSERT",
+				["ix"] = "INSERT",
+				["R"] = "REPLACE",
+				["Rc"] = "REPLACE",
+				["Rx"] = "REPLACE",
+				["Rv"] = "VISUAL R",
+				["Rvc"] = "VISUAL R",
+				["Rvx"] = "VISUAL R",
+				["c"] = "COMMAND",
 				["cv"] = "VIM EX",
 				["ce"] = "EX",
 				["r"] = "PROMPT",
@@ -79,12 +79,19 @@ function M.config()
 			},
 		},
 		{
-			provider = function(self)
-				return " %(" .. self.mode_names[self.mode] .. "%) "
-			end,
+			provider = " ",
 			hl = function(self)
 				local mode = self.mode:sub(1, 1) -- get only the first mode character
 				return { fg = "black", bg = self.mode_colors[mode], bold = true }
+			end,
+		},
+		{
+			provider = function(self)
+				return "  " .. self.mode_names[self.mode] .. " "
+			end,
+			hl = function(self)
+				local mode = self.mode:sub(1, 1) -- get only the first mode character
+				return { fg = self.mode_colors[mode], bold = true }
 			end,
 		},
 		update = {
@@ -105,8 +112,7 @@ function M.config()
 				return "  " .. self.dict.head .. " "
 			end,
 			hl = {
-				bg = colors.blue,
-				fg = "black",
+				fg = colors.peach,
 			},
 		},
 	}
@@ -117,12 +123,22 @@ function M.config()
 		provider = "%=",
 	}
 	local Fileicon = {
-		provider = function()
+		init = function(self)
 			local filename = vim.api.nvim_buf_get_name(0)
 			local extension = vim.fn.fnamemodify(filename, ":t:e")
-			local icon =
-				require("nvim-web-devicons").get_icon(vim.fn.fnamemodify(filename, ":t"), extension, { default = true })
-			return icon
+			local icon, color = require("nvim-web-devicons").get_icon_color(
+				vim.fn.fnamemodify(filename, ":t"),
+				extension,
+				{ color_icons = true }
+			)
+			self.icon = icon
+			self.color = color
+		end,
+		provider = function(self)
+			return self.icon
+		end,
+		hl = function(self)
+			return { fg = self.color }
 		end,
 	}
 	local Modified = {
@@ -130,22 +146,15 @@ function M.config()
 	}
 	local Percentage = {
 		{
-			provider = "",
+			provider = "%p%% ",
 			hl = {
 				fg = colors.peach,
 			},
 		},
 		{
-			provider = "%3p%%",
+			provider = " ",
 			hl = {
 				bg = colors.peach,
-				fg = "black",
-			},
-		},
-		{
-			provider = "",
-			hl = {
-				fg = colors.peach,
 			},
 		},
 	}
