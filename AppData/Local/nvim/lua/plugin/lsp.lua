@@ -35,7 +35,7 @@ function M.config()
 		keymap("<leader>lq", vim.diagnostic.setloclist, "Lsp Setloclist")
 		-- shortcut
 		keymap("<leader>li", "<cmd>LspInfo<cr>", "LspInfo")
-		keymap("<leader>m", "<cmd>Mason<cr>", "Mason")
+		keymap("<leader>lm", "<cmd>Mason<cr>", "Mason")
 	end
 
 	local lspconfig = require("lspconfig")
