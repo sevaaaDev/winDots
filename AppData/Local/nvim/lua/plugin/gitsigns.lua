@@ -68,8 +68,10 @@ M.opts = {
 		-- Actions
 		map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage Hunk" })
 		-- map('n', '<leader>hr', gs.reset_hunk)
-		-- map('v', '<leader>hs', function() gs.stage_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
-		-- map('v', '<leader>hr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
+		map("v", "<leader>gs", function()
+			gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
+		end)
+		-- map('v', '<leader>gr', function() gs.reset_hunk {vim.fn.line('.'), vim.fn.line('v')} end)
 		map("n", "<leader>gS", gs.stage_buffer, { desc = "Stage Buffer" })
 		map("n", "<leader>gu", gs.undo_stage_hunk, { desc = "Undo Stage Hunk" })
 		-- map('n', '<leader>hR', gs.reset_buffer)
