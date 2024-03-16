@@ -16,9 +16,9 @@ function M.config()
 	local capabilities = vim.lsp.protocol.make_client_capabilities()
 	capabilities.textDocument.completion.completionItem.snippetSupport = true
 	capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
-	local function lsp_keymaps(bufnr)
+	local function lsp_keymaps(ev)
 		local keymap = function(keys, func, desc)
-			vim.keymap.set("n", keys, func, { buffer = bufnr, desc = "LSP: " .. desc })
+			vim.keymap.set("n", keys, func, { buffer = ev.buf, desc = "LSP: " .. desc })
 		end
 		keymap("gD", vim.lsp.buf.declaration, "Go to Declaration")
 		keymap("gd", require("telescope.builtin").lsp_definitions, "Go to Definition")
@@ -37,14 +37,14 @@ function M.config()
 		keymap("<leader>li", "<cmd>LspInfo<cr>", "LspInfo")
 		keymap("<leader>lm", "<cmd>Mason<cr>", "Mason")
 	end
+	vim.api.nvim_create_autocmd("LspAttach", {
+		group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+		callback = lsp_keymaps,
+	})
 
 	local lspconfig = require("lspconfig")
-	local on_attach = function(client, bufnr)
-		lsp_keymaps(bufnr)
-	end
 	for _, server in pairs(require("lsp-server").servers) do
 		Opts = {
-			on_attach = on_attach,
 			capabilities = capabilities,
 		}
 
