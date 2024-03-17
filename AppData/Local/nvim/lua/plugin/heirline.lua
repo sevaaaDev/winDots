@@ -102,6 +102,16 @@ function M.config()
 			end),
 		},
 	}
+
+	local grapple = {
+		condition = function(self)
+			self.statusline = require("grapple")
+			return self.statusline.exists()
+		end,
+		provider = function(self)
+			return self.statusline.statusline()
+		end,
+	}
 	local Git = {
 		condition = conditions.is_git_repo,
 		init = function(self)
@@ -251,6 +261,7 @@ function M.config()
 	}
 	local status = {
 		ViMode,
+		grapple,
 		Git,
 		Diagnostics,
 		Divider,
