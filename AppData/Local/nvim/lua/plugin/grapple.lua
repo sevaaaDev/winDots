@@ -1,12 +1,14 @@
 return {
 	"cbochs/grapple.nvim",
+	commit = "6d955cb2907fe36b499fc35b93eab68a929a2286",
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons" },
 	},
 	opts = {
 		scope = "git_branch",
 		icons = true,
-		quick_select = "123456789",
+		quick_select = "werf56789",
+		style = "basename",
 	},
 	keys = {
 		{ ";g", "<cmd>Grapple toggle_tags<cr>", desc = "Grapple: Toggle tags menu" },
