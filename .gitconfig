@@ -17,3 +17,4 @@
   a = add
   aa = add .
   c = commit
+	st = status
