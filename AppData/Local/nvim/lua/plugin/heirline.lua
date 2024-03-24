@@ -5,7 +5,6 @@ local M = {
 	dependencies = {
 		{ "nvim-tree/nvim-web-devicons", lazy = true, commit = "3af745113ea537f58c4b1573b64a429fefad9e07" },
 	},
-	--	enabled = false,
 }
 function M.config()
 	local colors = {
@@ -254,9 +253,8 @@ function M.config()
 		},
 	}
 	local buf = {
-		provider = function()
-			local num = vim.fn.len(vim.fn.getbufinfo({ buflisted = 1 }))
-			return "BufOpn : " .. num
+		provider = function(self)
+			return self.name
 		end,
 	}
 	local status = {
@@ -274,14 +272,8 @@ function M.config()
 			bg = colors.base,
 		},
 	}
-	local tabline = {
-		Divider,
-		buf,
-		Divider,
-	}
 	require("heirline").setup({
 		statusline = status,
-		tabline = tabline,
 	})
 end
 
