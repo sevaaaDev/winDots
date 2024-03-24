@@ -67,7 +67,7 @@ M.opts = {
 
 		-- Actions
 		map("n", "<leader>gs", gs.stage_hunk, { desc = "Stage Hunk" })
-		-- map('n', '<leader>hr', gs.reset_hunk)
+		map("n", "<leader>gr", gs.reset_hunk)
 		map("v", "<leader>gs", function()
 			gs.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
 		end)
