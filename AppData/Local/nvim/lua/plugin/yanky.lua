@@ -23,14 +23,14 @@ return {
 				},
 			},
 			highlight = {
-				on_put = true,
+				on_put = false,
 				on_yank = false,
 				timer = 500,
 			},
 		})
 		-- Yanky keymaps --
-		vim.keymap.set({ "n", "x" }, "gp", ":YankyRingHistory<cr>")
-		vim.keymap.set({ "n", "x" }, "gP", ":YankyClearHistory<cr>")
+		vim.keymap.set({ "n" }, "yr", ":YankyRingHistory<cr>")
+		vim.keymap.set({ "n" }, "yc", ":YankyClearHistory<cr>")
 		vim.keymap.set({ "n", "x" }, "y", "<Plug>(YankyYank)")
 	end,
 	dependencies = {

@@ -37,8 +37,8 @@ keymap("n", "<C-Left>", ":vertical resize +2<CR>", { desc = "resize left" })
 keymap("n", "<C-Right>", ":vertical resize -2<CR>", { desc = "resize right" })
 
 -- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", { desc = "go right buffers" })
-keymap("n", "<S-h>", ":bprevious<CR>", { desc = "go left buffers" })
+keymap("n", "]b", ":bnext<CR>", { desc = "go right buffers" })
+keymap("n", "[b", ":bprevious<CR>", { desc = "go left buffers" })
 
 -- Delete buffers
 keymap("n", "<leader>x", ":bd<cr>", { desc = "delete buffer" })
