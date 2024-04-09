@@ -1,15 +1,14 @@
 local M = {
 	"ggandor/leap.nvim",
-	commit = "ff5522a0986cca1bbbeaa4f6d86d23ebf58a025c",
 	event = "BufReadPre",
 	config = function()
 		local leap = require("leap")
 		local user = require("leap.user")
-		vim.keymap.set("n", "s", "<Plug>(leap-forward)")
-		vim.keymap.set("n", "S", "<Plug>(leap-backward)")
+		vim.keymap.set("n", "L", "<Plug>(leap)")
 		leap.opts.special_keys.prev_target = "<bs>"
 		leap.opts.special_keys.prev_group = "<bs>"
 		leap.opts.max_phase_one_targets = 0
+		leap.opts.safe_labels = {}
 		user.set_repeat_keys("<cr>", "<bs>")
 		-- Hide the (real) cursor when leaping, and restore it afterwards.
 		vim.api.nvim_create_autocmd("User", {
